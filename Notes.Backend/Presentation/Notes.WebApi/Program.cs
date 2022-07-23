@@ -30,6 +30,7 @@ namespace Notes.WebApi
 
                 }
             }
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
