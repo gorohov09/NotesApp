@@ -20,7 +20,7 @@ namespace Notes.Application.Notes.Queries.GetNoteList
         public async Task<NoteListVm> Handle(GetNoteListQuery request, CancellationToken cancellationToken)
         {
             var entitiesQuery = await _dbContext.Notes
-                .Where(note => note.Id == request.Id)
+                .Where(note => note.UserId == request.UserId)
                 .ProjectTo<NoteLookupDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(cancellationToken);
 
