@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Notes.Application.Notes.Commands.CreateNote
 {
-    public class CreateNodeCommandHandler : IRequestHandler<CreateNodeCommand, Guid>
+    public class CreateNoteCommandHandler : IRequestHandler<CreateNoteCommand, Guid>
     {
         private readonly INotesDbContext _dbContext;
 
-        public CreateNodeCommandHandler(INotesDbContext dbContext) =>
+        public CreateNoteCommandHandler(INotesDbContext dbContext) =>
             _dbContext = dbContext;
 
-        public async Task<Guid> Handle(CreateNodeCommand request, CancellationToken cancellationToken)
+        public async Task<Guid> Handle(CreateNoteCommand request, CancellationToken cancellationToken)
         {
             var note = new Note
             {

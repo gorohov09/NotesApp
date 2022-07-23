@@ -3,7 +3,7 @@ using System;
 
 namespace Notes.Application.Notes.Commands.CreateNote
 {
-    public class CreateNodeCommand : IRequest<Guid> //Результат выполнение команды - Guid
+    public class CreateNoteCommand : IRequest<Guid> //Результат выполнение команды - Guid
     {
         public Guid UserId { get; set; }
 
