@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 
 namespace Notes.Application.Notes.Commands.UpdateNote
 {
-    public class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand>
+    public class UpdateNoteCommandHandler : IRequestHandler<UpdateNoteCommand, bool>
     {
         private readonly INotesDbContext _dbContext;
 
         public UpdateNoteCommandHandler(INotesDbContext dbContext) => _dbContext = dbContext;
 
-        public async Task<Unit> Handle(UpdateNoteCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(UpdateNoteCommand request, CancellationToken cancellationToken)
         {
             var entity =
                 await _dbContext.Notes.FirstOrDefaultAsync(note => note.Id == request.Id, cancellationToken);
 
             if (entity is null || entity.UserId != request.UserId)
-                throw new NotFoundException(nameof(Note), request.Id);
+                return false;
 
             entity.Title = request.Title;
             entity.Details = request.Details;
@@ -30,7 +30,7 @@ namespace Notes.Application.Notes.Commands.UpdateNote
 
             await _dbContext.SaveChangesAsync(cancellationToken);
 
-            return Unit.Value;
+            return true;
         }
     }
 }

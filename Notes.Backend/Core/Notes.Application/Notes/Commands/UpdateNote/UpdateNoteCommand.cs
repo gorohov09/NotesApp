@@ -3,7 +3,7 @@ using System;
 
 namespace Notes.Application.Notes.Commands.UpdateNote
 {
-    public class UpdateNoteCommand : IRequest
+    public class UpdateNoteCommand : IRequest<bool>
     {
         public Guid UserId { get; set; }
 
