@@ -25,6 +25,8 @@ namespace Notes.Application.Notes.Commands.UpdateNote
                 opt => opt.MapFrom(noteDto => noteDto.Details))
                 .ForMember(noteCommand => noteCommand.Id,
                 opt => opt.MapFrom(noteDto => noteDto.Id));
+
+            //noteCommand - объект приемник; noteDto - объект источник
         }
     }
 }
